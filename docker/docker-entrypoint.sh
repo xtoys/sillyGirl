@@ -1,13 +1,11 @@
 #!/bin/bash
 
-echo -e "\n======================== sillyGirl Bot ========================\n"
+set -e
 
-# 静默启动主服务程序
-/app/sillyGirl -d
+/app/sillyGirl -d 2>&1 >/dev/null
+echo "silly-girl: service started, have fun"
 
-# 定时任务程序守护进程
-[[ ! -f task ]] && touch task
-[[ $(cat task) != $(crontab -l) ]] && crontab task 
-crond -f >/dev/null 2>&1
+[[ ! -f tasklist ]] && touch tasklist
+[[ $(cat tasklist) != $(crontab -l) ]] && crontab tasklist 
 
-exec "$@"
+exec crond -f "$@"
