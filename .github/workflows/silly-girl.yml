@@ -6,8 +6,8 @@
 name: SillyGirl Bot
 
 on:
-  schedule:
-    - cron: '21 21 * * 5'
+  # schedule:
+  #   - cron: '21 21 * * 5'
   workflow_dispatch:
     inputs:
       img:
